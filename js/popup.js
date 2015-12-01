@@ -22,14 +22,17 @@ $(function(){
     $('#repos').val(localStorage.repos);
   }
   function initInputListeners(){
-    setInputListener('#to', localStorage.to);
-    setInputListener('#from', localStorage.from);
-    setInputListener('#url', localStorage.url);
-    setInputListener('#repos', localStorage.repos);
-  }
-  function setInputListener( inputElement, store){
-    $(inputElement).on('input', function(){
-      store = $(this).val();
+    $("#to").on('input', function(){
+      localStorage.to = $(this).val();
+    });
+    $("#from").on('input', function(){
+      localStorage.from = $(this).val();
+    });
+    $("#url").on('input', function(){
+      localStorage.url = $(this).val();
+    });
+    $("#repos").on('input', function(){
+      localStorage.repos = $(this).val();
     });
   }
 });
