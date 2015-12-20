@@ -12,7 +12,12 @@ $(function(){
     for(var i = 0; i < repos.length; i++){
       repo = repos[i];
       url = ghe + repo + compare
-      chrome.tabs.create({url: url})
+      options = {
+        url: url,
+        active: false,
+        selected: false
+      }
+      chrome.tabs.create(options)
     }
   });
   function initInputValues(){
