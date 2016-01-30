@@ -1,26 +1,24 @@
-function getBranchNameTextMatchArray(info){
-  var selectedText = info.selectionText;
-  return /^(.+?)\.\.\.(.+?)$/.exec(selectedText) || [];
+function getBranchNameTextMatchArray(text){
+  return /^(.+?)\.\.\.(.+?)$/.exec(text) || [];
 }
 function isInvalidMatchArray(matchArray){
   var numOriginalTextAndTwoMatches = 3 ;
    return matchArray == null || matchArray.length !== numOriginalTextAndTwoMatches;
 }
 function onClickContextMenu(info, tab){
-  match = getBranchNameTextMatchArray(info);
+  var selectedText = info.selectionText;
+  match = getBranchNameTextMatchArray(selectedText);
   if(isInvalidMatchArray(match)){
     return;
   }
-  to = $.trim(match[1]);
-  from = $.trim(match[2]);
-  switch (info.menuItemId){
-    case 'ADD_BRANCH_NAME_TO_SETTINGS':
-      addBrancheNameToSettings(to, from);
-      alert("updated to:" + to + ", from:" + from);
-    break;
-    case 'OPEN_PR_TABS':
-      openPrTabs(to, from);
-    break;
+  var menuItemId = info.menuItemId;
+  if(menuItemId == 'OPEN_PR_TABS'){
+    openPrTabsFromBranchDiffString(selectedText);
+  }else if (menuItemId == 'ADD_BRANCH_NAME_TO_SETTINGS'){
+    to = $.trim(match[1]);
+    from = $.trim(match[2]);
+    addBrancheNameToSettings(to, from);
+    alert("updated to:" + to + ", from:" + from);
   }
 }
 function addBrancheNameToSettings(to, from){
@@ -28,12 +26,16 @@ function addBrancheNameToSettings(to, from){
     localStorage.from = from ;
 }
 function openPrTabs(to, from){
-  var ghe = localStorage.url;
-  var compare = '/compare/' + to + '...' + from
-  var repos = localStorage.repos.split("\n");
-  for(var i = 0; i < repos.length; i++){
-    repo = repos[i];
-    url = ghe + repo + compare
+  var branchDiffString = to + '...' + from;
+  openPrTabsFromBranchDiffString(branchDiffString);
+}
+function openPrTabsFromBranchDiffString(branchDiffString){
+  var projectUrlString = localStorage.url;
+  var compareUrlString = '/compare/' + branchDiffString;
+  var reposArray = localStorage.repos.split("\n");
+  for(var i = 0; i < reposArray.length; i++){
+    repoUrl = reposArray[i];
+    url = projectUrlString + repoUrl + compareUrlString
     options = {
       url: url,
       active: false,
