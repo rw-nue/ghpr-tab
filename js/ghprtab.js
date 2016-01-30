@@ -15,7 +15,7 @@ function onClickContextMenu(info, tab){
   from = $.trim(match[2]);
   switch (info.menuItemId){
     case 'ADD_BRANCH_NAME_TO_SETTINGS':
-      addBranchesToSettings(to, from);
+      addBrancheNameToSettings(to, from);
       alert("updated to:" + to + ", from:" + from);
     break;
     case 'OPEN_PR_TABS':
@@ -23,7 +23,7 @@ function onClickContextMenu(info, tab){
     break;
   }
 }
-function addBranchesToSettings(to, from){
+function addBrancheNameToSettings(to, from){
     localStorage.to = to ;
     localStorage.from = from ;
 }
