@@ -8,8 +8,17 @@
     "default_icon": "icon.png"
   },
   "permissions": [
-    "tabs"
+    "tabs",
+    "contextMenus"
   ],
+  "background" : {
+    "persistent": false,
+    "scripts": [
+      "js/lib/jquery-2.1.0.min.js",
+      "js/popup.js",
+      "js/menu.js"
+    ]
+  },
   "icons" : {
     "128": "icon.png"
   }
