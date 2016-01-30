@@ -1,6 +1,7 @@
 $(function(){
     initInputValues();
     initInputListeners();
+    initSubmitButtonListeners();
 });
   function getBranchNameTextMatchArray(info){
     var selectedText = info.selectionText;
@@ -32,11 +33,6 @@ $(function(){
       localStorage.from = from ;
   }
 
-  $('#go').on('click', function(){
-    var to = $('#to').val();
-    var from = $('#from').val();
-    openPrTabs(to, from);
-  });
   function openPrTabs(to, from){
     var ghe = localStorage.url;
     var compare = '/compare/' + to + '...' + from
@@ -70,5 +66,12 @@ $(function(){
     });
     $("#repos").on('input', function(){
       localStorage.repos = $(this).val();
+    });
+  }
+  function initSubmitButtonListeners(){
+    $('#go').on('click', function(){
+      var to = $('#to').val();
+      var from = $('#from').val();
+      openPrTabs(to, from);
     });
   }
