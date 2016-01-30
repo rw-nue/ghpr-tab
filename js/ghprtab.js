@@ -27,7 +27,6 @@ function addBranchesToSettings(to, from){
     localStorage.to = to ;
     localStorage.from = from ;
 }
-
 function openPrTabs(to, from){
   var ghe = localStorage.url;
   var compare = '/compare/' + to + '...' + from
