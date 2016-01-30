@@ -1,7 +1,7 @@
 $(function(){
-
-  initInputValues();
-  initInputListeners();
+    initInputValues();
+    initInputListeners();
+});
 
   $('#go').on('click', function(){
     var from = $('#from').val();
@@ -40,4 +40,3 @@ $(function(){
       localStorage.repos = $(this).val();
     });
   }
-});
