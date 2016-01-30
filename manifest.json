@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "GitHub Pull Request Tab",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Create PullRequest tabs quickly",
   "browser_action": {
     "default_popup": "popup.html",
