@@ -38,10 +38,16 @@ function openPrTabsFromBranchDiffString(branchDiffString){
   var compareUrlString = '/compare/' + branchDiffString;
   var reposArray = localStorage.repos.split("\n");
   for(var i = 0; i < reposArray.length; i++){
-    repoUrl = reposArray[i];
-    pullRequestUrl = projectUrlString + repoUrl + compareUrlString
-    openTab(pullRequestUrl);
+    openPrTabForRepo(reposArray, i, projectUrlString, compareUrlString);
   }
+}
+function openPrTabForRepo(repos, index, projectUrl, compareUrl){
+  repoUrl = $.trim(repos[index]);
+  if(repoUrl == ''){
+    return;
+  }
+  pullRequestUrl = projectUrl + repoUrl + compareUrl
+  openTab(pullRequestUrl);
 }
 function openTab(url){
   options = {
