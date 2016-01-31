@@ -9,6 +9,7 @@ function onClickContextMenu(info, tab){
   var selectedText = info.selectionText;
   match = getBranchNameTextMatchArray(selectedText);
   if(isInvalidMatchArray(match)){
+    alert('Invalid format.');
     return;
   }
   var menuItemId = info.menuItemId;
