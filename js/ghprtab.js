@@ -35,12 +35,15 @@ function openPrTabsFromBranchDiffString(branchDiffString){
   var reposArray = localStorage.repos.split("\n");
   for(var i = 0; i < reposArray.length; i++){
     repoUrl = reposArray[i];
-    url = projectUrlString + repoUrl + compareUrlString
-    options = {
-      url: url,
-      active: false,
-      selected: false
-    }
-    chrome.tabs.create(options)
+    pullRequestUrl = projectUrlString + repoUrl + compareUrlString
+    openTab(pullRequestUrl);
   }
+}
+function openTab(url){
+  options = {
+    url: url,
+    active: false,
+    selected: false
+  }
+  chrome.tabs.create(options)
 }
