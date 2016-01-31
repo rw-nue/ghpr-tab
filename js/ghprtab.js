@@ -13,13 +13,16 @@ function onClickContextMenu(info, tab){
     return;
   }
   var menuItemId = info.menuItemId;
-  if(menuItemId == 'OPEN_PR_TABS'){
+  switch(info.menuItemId){
+  case 'OPEN_PR_TABS':
     openPrTabsFromBranchDiffString(selectedText);
-  }else if (menuItemId == 'ADD_BRANCH_NAME_TO_SETTINGS'){
+    break;
+  case 'ADD_BRANCH_NAME_TO_SETTINGS':
     to = $.trim(match[1]);
     from = $.trim(match[2]);
     addBrancheNameToSettings(to, from);
     alert("updated to:" + to + ", from:" + from);
+    break;
   }
 }
 function addBrancheNameToSettings(to, from){
