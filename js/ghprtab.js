@@ -33,7 +33,25 @@ function openPrTabs(to, from){
   var branchDiffString = to + '...' + from;
   openPrTabsFromBranchDiffString(branchDiffString);
 }
+function isEmptyString(string, errorMessage){
+  if(string == ''){
+    alert(errorMessage);
+    return true;
+  }else{
+    return false;
+  }
+}
+function isInvalidSettings(){
+  if(isEmptyString(localStorage.to,    'error! input merge_to.')   ){ return true; }
+  if(isEmptyString(localStorage.from,  'error! input merge_from.') ){ return true; }
+  if(isEmptyString(localStorage.url,   'error! input project url.')){ return true; }
+  if(isEmptyString(localStorage.repos, 'error! input repos.')      ){ return true; }
+  return false;
+}
 function openPrTabsFromBranchDiffString(branchDiffString){
+  if(isInvalidSettings()){
+    return;
+  }
   var projectUrlString = localStorage.url;
   var compareUrlString = '/compare/' + branchDiffString;
   var reposArray = localStorage.repos.split("\n");
