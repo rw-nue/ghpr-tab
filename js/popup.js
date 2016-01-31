@@ -11,16 +11,16 @@ function initInputValues(){
 }
 function initInputListeners(){
   $("#to").on('input', function(){
-    localStorage.to = $(this).val();
+    localStorage.to = $.trim($(this).val());
   });
   $("#from").on('input', function(){
-    localStorage.from = $(this).val();
+    localStorage.from = $.trim($(this).val());
   });
   $("#url").on('input', function(){
-    localStorage.url = $(this).val();
+    localStorage.url = $.trim($(this).val());
   });
   $("#repos").on('input', function(){
-    localStorage.repos = $(this).val();
+    localStorage.repos = $.trim($(this).val());
   });
 }
 function initSubmitButtonListeners(){
