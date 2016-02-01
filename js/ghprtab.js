@@ -42,10 +42,10 @@ function isEmptyString(string, errorMessage){
   }
 }
 function isInvalidSettings(){
-  if(isEmptyString(localStorage.to,    'error! input merge_to.')   ){ return true; }
-  if(isEmptyString(localStorage.from,  'error! input merge_from.') ){ return true; }
+  if(isEmptyString(localStorage.to,    'error! input base branch name.')   ){ return true; }
+  if(isEmptyString(localStorage.from,  'error! input branch name to merge.') ){ return true; }
   if(isEmptyString(localStorage.url,   'error! input project url.')){ return true; }
-  if(isEmptyString(localStorage.repos, 'error! input repos.')      ){ return true; }
+  if(isEmptyString(localStorage.repos, 'error! input repository.')      ){ return true; }
   return false;
 }
 function openPrTabsFromBranchDiffString(branchDiffString){
